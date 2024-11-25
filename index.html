@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -40,20 +40,14 @@
             padding: 20px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            overflow: hidden;
         }
 
         .question {
             display: none;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .question.active {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .checkbox-group, .radio-group {
@@ -98,8 +92,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            display: block;
-            margin: 20px auto;
+            margin: 20px 10px;
             transition: background-color 0.3s ease;
         }
 
@@ -122,6 +115,16 @@
             background: #1E88E5;
             width: 0;
             transition: width 0.5s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error-message {
+            color: #E53935;
+            font-size: 0.9em;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -225,40 +228,61 @@
                 <textarea name="q8" placeholder="Expliquez ici..."></textarea>
             </div>
 
-            <button type="button" id="next-btn">Suivant</button>
-            <button type="submit" id="submit-btn" class="hidden">Envoyer</button>
+            <!-- Navigation -->
+            <div>
+                <button type="button" id="prev-btn" class="hidden">Précédent</button>
+                <button type="button" id="next-btn">Suivant</button>
+                <button type="submit" id="submit-btn" class="hidden">Envoyer</button>
+            </div>
         </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
-        (function() {
-            emailjs.init("r9_EdMt6rbw2auf5S"); // Remplacez par votre ID public EmailJS
+        (function () {
+            emailjs.init("r9_EdMt6rbw2auf5S"); // Placez ici votre ID public EmailJS
         })();
 
-        const form = document.getElementById('questionnaire');
-        const questions = document.querySelectorAll('.question');
-        const nextBtn = document.getElementById('next-btn');
-        const submitBtn = document.getElementById('submit-btn');
-        const progressBar = document.querySelector('.progress');
+        const form = document.getElementById("questionnaire");
+        const questions = document.querySelectorAll(".question");
+        const progressBar = document.querySelector(".progress");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const submitBtn = document.getElementById("submit-btn");
+
         let currentQuestion = 0;
 
-        nextBtn.addEventListener('click', () => {
-            questions[currentQuestion].classList.remove('active');
+        function updateUI() {
+            questions.forEach((question, index) => {
+                question.classList.toggle("active", index === currentQuestion);
+            });
+            prevBtn.classList.toggle("hidden", currentQuestion === 0);
+            nextBtn.classList.toggle("hidden", currentQuestion === questions.length - 1);
+            submitBtn.classList.toggle("hidden", currentQuestion !== questions.length - 1);
+            progressBar.style.width = ((currentQuestion + 1) / questions.length) * 100 + "%";
+        }
+
+        function validateQuestion() {
+            const currentInputs = questions[currentQuestion].querySelectorAll("input, textarea");
+            const isValid = Array.from(currentInputs).some(input => input.checked || input.value.trim());
+            const errorMsg = document.getElementById(`error-q${currentQuestion + 1}`);
+            if (errorMsg) errorMsg.classList.toggle("hidden", isValid);
+            return isValid;
+        }
+
+        nextBtn.addEventListener("click", () => {
+            if (!validateQuestion()) return;
             currentQuestion++;
-            if (currentQuestion < questions.length) {
-                questions[currentQuestion].classList.add('active');
-                progressBar.style.width = ((currentQuestion + 1) / questions.length) * 100 + '%';
-                if (currentQuestion === questions.length - 1) {
-                    nextBtn.classList.add('hidden');
-                    submitBtn.classList.remove('hidden');
-                }
-            }
+            updateUI();
         });
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
+        prevBtn.addEventListener("click", () => {
+            currentQuestion--;
+            updateUI();
+        });
 
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
             const formData = new FormData(form);
             const data = {};
             formData.forEach((value, key) => {
@@ -269,16 +293,19 @@
                 }
             });
 
-            emailjs.send("service_wgpcqsc", "template_0zhf7cp", data)
+            emailjs
+                .send("service_wgpcqsc", "template_0zhf7cp", data)
                 .then(() => {
                     alert("Merci pour vos réponses ! Elles ont été envoyées avec succès.");
                     form.reset();
                 })
                 .catch(err => {
-                    console.error("Erreur lors de l'envoi :", err);
-                    alert("Une erreur est survenue lors de l'envoi. Réessayez plus tard.");
+                    alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+                    console.error("Erreur :", err);
                 });
         });
+
+        updateUI();
     </script>
 </body>
 </html>
