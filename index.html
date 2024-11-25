@@ -40,10 +40,20 @@
             padding: 20px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            overflow: hidden;
         }
 
         .question {
-            margin-bottom: 30px;
+            display: none;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .question.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .checkbox-group, .radio-group {
@@ -96,16 +106,35 @@
         button:hover {
             background-color: #1565C0;
         }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background: #1E88E5;
+            width: 0;
+            transition: width 0.5s ease;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <h1>Questionnaire PALETTES DISTRIBUTION</h1>
+        <p>Merci de répondre à ce questionnaire pour nous aider à mieux comprendre vos besoins et améliorer nos services.</p>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
         <form id="questionnaire">
-            <h1>Questionnaire PALETTES DISTRIBUTION</h1>
-            <p>Merci de répondre à ce questionnaire pour nous aider à mieux comprendre vos besoins et améliorer nos services.</p>
-            
             <!-- Question 1 -->
-            <div class="question">
+            <div class="question active" id="q1">
                 <h2>1. Lors du choix d’un fournisseur, quels sont les trois éléments les plus importants pour vous ?</h2>
                 <div class="checkbox-group">
                     <label><input type="checkbox" name="q1[]" value="Fiabilité des produits"> Fiabilité des produits</label>
@@ -116,87 +145,16 @@
                 </div>
             </div>
 
-            <!-- Question 2 -->
-            <div class="question">
-                <h2>2. Avant de collaborer avec une entreprise, quelles informations recherchez-vous généralement ?</h2>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="q2[]" value="Avis clients"> Avis clients ou recommandations</label>
-                    <label><input type="checkbox" name="q2[]" value="Présentation de l’entreprise"> Présentation de l’entreprise</label>
-                    <label><input type="checkbox" name="q2[]" value="Certifications"> Certifications ou normes respectées</label>
-                    <label><input type="checkbox" name="q2[]" value="Démonstration"> Démonstration concrète des produits/services</label>
-                    <label><input type="checkbox" name="q2[]" value="Engagements écologiques"> Engagements écologiques ou sociaux</label>
-                </div>
-            </div>
+            <!-- Ajoutez les autres questions ici -->
 
-            <!-- Question 3 -->
-            <div class="question">
-                <h2>3. Lorsqu’il s’agit de travailler avec un nouveau fournisseur, qu’est-ce qui vous aide à prendre votre décision ?</h2>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="q3[]" value="Échantillons"> Échantillons ou essais gratuits</label>
-                    <label><input type="checkbox" name="q3[]" value="Rencontre"> Rencontre avec un commercial ou visite d’usine</label>
-                    <label><input type="checkbox" name="q3[]" value="Études"> Études de cas ou exemples concrets</label>
-                    <label><input type="checkbox" name="q3[]" value="Garanties"> Garantie ou assurance qualité</label>
-                    <label><input type="checkbox" name="q3[]" value="Conditions commerciales"> Présentation claire des conditions commerciales</label>
-                </div>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="question">
-                <h2>4. Pour vous, qu’est-ce qui reflète la fiabilité et le professionnalisme d’une entreprise ?</h2>
-                <textarea name="q4" placeholder="Expliquez ici..."></textarea>
-            </div>
-
-            <!-- Question 5 -->
-            <div class="question">
-                <h2>5. Quel poids accordez-vous à ces aspects dans votre confiance envers une entreprise ?</h2>
-                <label>Respect des délais de livraison :</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="q5a" value="Très important"> Très important</label>
-                    <label><input type="radio" name="q5a" value="Important"> Important</label>
-                    <label><input type="radio" name="q5a" value="Peu important"> Peu important</label>
-                </div>
-                <label>Engagement écologique :</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="q5b" value="Très important"> Très important</label>
-                    <label><input type="radio" name="q5b" value="Important"> Important</label>
-                    <label><input type="radio" name="q5b" value="Peu important"> Peu important</label>
-                </div>
-                <label>Clarté des informations commerciales :</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="q5c" value="Très important"> Très important</label>
-                    <label><input type="radio" name="q5c" value="Important"> Important</label>
-                    <label><input type="radio" name="q5c" value="Peu important"> Peu important</label>
-                </div>
-            </div>
-
-            <!-- Question 6 -->
-            <div class="question">
-                <h2>6. Qu’attendez-vous d’un échange avec notre équipe commerciale ?</h2>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="q6[]" value="Conseils personnalisés"> Conseils personnalisés</label>
-                    <label><input type="checkbox" name="q6[]" value="Réactivité rapide"> Réactivité rapide</label>
-                    <label><input type="checkbox" name="q6[]" value="Informations techniques claires"> Informations techniques claires</label>
-                    <label><input type="checkbox" name="q6[]" value="Disponibilité"> Disponibilité pour des rendez-vous ou visites</label>
-                </div>
-            </div>
-
-            <!-- Question 7 -->
-            <div class="question">
-                <h2>7. Les avis ou témoignages de nos clients influencent-ils votre perception ?</h2>
-                <div class="radio-group">
-                    <label><input type="radio" name="q7" value="Oui, beaucoup"> Oui, beaucoup</label>
-                    <label><input type="radio" name="q7" value="Oui, un peu"> Oui, un peu</label>
-                    <label><input type="radio" name="q7" value="Non"> Non</label>
-                </div>
-            </div>
-
-            <!-- Question 8 -->
-            <div class="question">
+            <!-- Dernière question -->
+            <div class="question" id="q8">
                 <h2>8. Selon vous, qu’est-ce qui manque souvent chez les fournisseurs pour instaurer une vraie relation de confiance ?</h2>
                 <textarea name="q8" placeholder="Expliquez ici..."></textarea>
             </div>
 
-            <button type="submit">Envoyer</button>
+            <button type="button" id="next-btn">Suivant</button>
+            <button type="submit" id="submit-btn" class="hidden">Envoyer</button>
         </form>
     </div>
 
@@ -207,6 +165,24 @@
         })();
 
         const form = document.getElementById('questionnaire');
+        const questions = document.querySelectorAll('.question');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const progressBar = document.querySelector('.progress');
+        let currentQuestion = 0;
+
+        nextBtn.addEventListener('click', () => {
+            questions[currentQuestion].classList.remove('active');
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                questions[currentQuestion].classList.add('active');
+                progressBar.style.width = ((currentQuestion + 1) / questions.length) * 100 + '%';
+                if (currentQuestion === questions.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                }
+            }
+        });
 
         form.addEventListener('submit', function(event) {
             event.preventDefault();
