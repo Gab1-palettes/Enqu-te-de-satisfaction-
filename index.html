@@ -122,7 +122,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Questionnaire PALETTES DISTRIBUTION</h1>
+        <form id="questionnaire" action="send.php" method="POST">
+    <h1>Questionnaire PALETTES DISTRIBUTION</h1>
         <p>Merci de répondre à ce questionnaire pour nous aider à mieux comprendre vos besoins et améliorer nos services.</p>
         <div class="progress-bar">
             <div id="step1" class="active"></div>
@@ -221,8 +222,9 @@
             </div>
             <!-- Submit -->
             <button type="button" id="next-btn">Suivant</button>
-        </form>
-    </div>
+    <button type="submit">Envoyer</button>
+</form>
+ </div>
 
     <script>
         const questions = document.querySelectorAll('.question');
