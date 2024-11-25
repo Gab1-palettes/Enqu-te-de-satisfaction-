@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire</title>
+    <title>Questionnaire Ludique</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #f1f1f1, #ffffff);
+            background: linear-gradient(to bottom, #f3f9ff, #ffffff);
             color: #333;
         }
 
         h1 {
             text-align: center;
             font-size: 2.5em;
-            color: #1E88E5; /* Bleu */
+            color: #0056B3;
             margin: 20px 0;
         }
 
         h2 {
             font-size: 1.3em;
             margin-bottom: 10px;
-            color: #E53935; /* Rouge */
+            color: #C62828;
         }
 
         p {
@@ -36,14 +36,46 @@
         .container {
             max-width: 800px;
             margin: 20px auto;
-            background: #fff;
+            background: #ffffff;
             padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+        }
+
+        .progress-bar {
+            height: 250px;
+            position: relative;
+            margin: 30px auto;
+            border: 1px solid #ddd;
+            background: #f1f1f1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar .stage {
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        .stage img {
+            max-width: 120px;
+            display: block;
+            margin: auto;
+        }
+
+        .stage.active {
+            transform: scale(1);
+            opacity: 1;
         }
 
         .question {
             margin-bottom: 30px;
+            animation: fadeIn 0.8s ease;
         }
 
         label {
@@ -55,13 +87,24 @@
         .checkbox-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .checkbox-group label {
             display: flex;
             align-items: center;
             cursor: pointer;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .checkbox-group label:hover {
+            background: #e3f2fd;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .checkbox-group input {
@@ -71,87 +114,68 @@
         textarea, input[type="text"], input[type="email"] {
             width: 100%;
             padding: 10px;
-            margin-top: 5px;
+            margin-top: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             resize: none;
         }
 
         button {
-            background-color: #1E88E5;
+            background-color: #0056B3;
             color: #fff;
             border: none;
             padding: 15px 30px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            display: block;
+            margin: auto;
             transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #1565C0;
+            background-color: #003D80;
         }
 
-        .progress-bar {
-            height: 200px;
-            position: relative;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            background: #f1f1f1;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .progress-bar .stage {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .stage img {
-            max-width: 100px;
-            display: inline-block;
-        }
-
-        .hidden {
-            display: none;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Questionnaire PALETTES DISTRIBUTION</h1>
-        <p>Répondez à nos questions et suivez la construction d'une palette qui finira par être chargée dans un camion !</p>
+        <p>Répondez à nos questions et suivez la construction d'une palette, étape par étape, jusqu'à son chargement dans un camion !</p>
         <div class="progress-bar" id="progress-bar">
-            <div class="stage" id="stage1" style="display: none;">
+            <div class="stage" id="stage1">
                 <img src="https://via.placeholder.com/100x50?text=Plots" alt="Plots">
                 <p>Plots placés</p>
             </div>
-            <div class="stage" id="stage2" style="display: none;">
+            <div class="stage" id="stage2">
                 <img src="https://via.placeholder.com/200x50?text=Semelles" alt="Semelles">
                 <p>Semelles installées</p>
             </div>
-            <div class="stage" id="stage3" style="display: none;">
+            <div class="stage" id="stage3">
                 <img src="https://via.placeholder.com/300x50?text=Planches" alt="Planches">
                 <p>Planches ajoutées</p>
             </div>
-            <div class="stage" id="stage4" style="display: none;">
+            <div class="stage" id="stage4">
                 <img src="https://via.placeholder.com/350x50?text=Assemblage" alt="Assemblage">
                 <p>Palette assemblée</p>
             </div>
-            <div class="stage" id="stage5" style="display: none;">
+            <div class="stage" id="stage5">
                 <img src="https://via.placeholder.com/400x100?text=Camion" alt="Camion">
                 <p>Palette chargée dans le camion</p>
             </div>
         </div>
-       <div class="container">
-        <h1>Questionnaire de Confiance</h1>
-        <p>Merci de répondre à ces questions pour nous aider à améliorer nos services et renforcer la confiance avec nos clients.</p>
-        <div class="progress-bar" id="progress-bar"></div>
         <form id="questionnaire">
-            <!-- Question 1 -->
             <div class="question" id="q1">
                 <h2>1. Lors du choix d’un fournisseur, quels sont les trois éléments les plus importants pour vous ?</h2>
                 <div class="checkbox-group">
@@ -160,10 +184,9 @@
                     <label><input type="checkbox" name="q1" value="Prix compétitifs"> Prix compétitifs</label>
                     <label><input type="checkbox" name="q1" value="Communication et transparence"> Communication et transparence</label>
                     <label><input type="checkbox" name="q1" value="Engagement environnemental"> Engagement environnemental</label>
-                    <label><input type="checkbox" name="q1" value="Autre"> Autre (précisez)</label>
                 </div>
             </div>
-            <!-- Question 2 -->
+             <!-- Question 2 -->
             <div class="question hidden" id="q2">
                 <h2>2. Avant de collaborer avec une entreprise, quelles informations recherchez-vous généralement ?</h2>
                 <div class="checkbox-group">
@@ -240,27 +263,44 @@
             <button type="button" id="next-btn">Suivant</button>
         </form>
     </div>
+            <button type="button" id="next-btn">Suivant</button>
+        </form>
+    </div>
 
     <script>
         const questions = document.querySelectorAll('.question');
         const stages = ['stage1', 'stage2', 'stage3', 'stage4', 'stage5'];
-        const nextBtn = document.getElementById('next-btn');
         let currentQuestion = 0;
+
+        const nextBtn = document.getElementById('next-btn');
+        const progressBarStages = stages.map(stage => document.getElementById(stage));
+
+        const updateProgress = () => {
+            progressBarStages.forEach((stage, index) => {
+                if (index <= currentQuestion) {
+                    stage.classList.add('active');
+                } else {
+                    stage.classList.remove('active');
+                }
+            });
+        };
 
         nextBtn.addEventListener('click', () => {
             if (currentQuestion < questions.length - 1) {
                 questions[currentQuestion].classList.add('hidden');
-                document.getElementById(stages[currentQuestion]).style.display = 'block';
                 currentQuestion++;
                 questions[currentQuestion].classList.remove('hidden');
+                updateProgress();
+
                 if (currentQuestion === questions.length - 1) {
                     nextBtn.textContent = 'Terminer';
                 }
             } else {
-                document.getElementById(stages[currentQuestion]).style.display = 'block';
                 alert('Merci d’avoir complété le questionnaire !');
             }
         });
+
+        updateProgress();
     </script>
 </body>
 </html>
