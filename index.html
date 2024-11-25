@@ -35,7 +35,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 80%;
-            max-width: 600px;
+            max-width: 800px;
             animation: fadeIn 2s ease-out;
         }
 
@@ -80,7 +80,7 @@
             color: #555;
         }
 
-        input, textarea {
+        input[type="text"], input[type="email"], input[type="tel"], textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -89,10 +89,23 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        input:focus, textarea:focus {
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
             border-color: #4caf50;
             box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
             outline: none;
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 5px 10px;
         }
 
         button {
@@ -123,36 +136,50 @@
         <p>Votre avis nous intéresse !</p>
         <form action="/submit-form" method="post">
             <fieldset>
-                <legend>Votre entreprise</legend>
-                <label for="nom-entreprise">Nom :</label>
-                <input type="text" id="nom-entreprise" name="nom-entreprise" required>
-                <label for="activite">Activité :</label>
-                <input type="text" id="activite" name="activite" required>
-                <label for="adresse1">Adresse 1 :</label>
-                <input type="text" id="adresse1" name="adresse1" required>
-                <label for="adresse2">Adresse 2 :</label>
-                <input type="text" id="adresse2" name="adresse2">
-                <label for="code-postal">Code postal :</label>
-                <input type="text" id="code-postal" name="code-postal" required>
-                <label for="ville">Ville :</label>
-                <input type="text" id="ville" name="ville" required>
-            </fieldset>
-
-            <fieldset>
-                <legend>Le responsable déchets bois</legend>
-                <label for="nom-responsable">Nom :</label>
-                <input type="text" id="nom-responsable" name="nom-responsable" required>
-                <label for="prenom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom" required>
-                <label for="telephone">Tél :</label>
-                <input type="tel" id="telephone" name="telephone" required>
-                <label for="email">Adresse e-mail :</label>
-                <input type="email" id="email" name="email" required>
+                <legend>Les prestations</legend>
+                <p>* Cocher la case correspondante</p>
+                <table>
+                    <tr>
+                        <td>Notre réactivité :</td>
+                        <td><input type="radio" name="reactivite" value="TS"> Très satisfait</td>
+                        <td><input type="radio" name="reactivite" value="S"> Satisfait</td>
+                        <td><input type="radio" name="reactivite" value="PS"> Peu satisfait</td>
+                        <td><input type="radio" name="reactivite" value="TPS"> Très peu satisfait</td>
+                    </tr>
+                    <tr>
+                        <td>Le respect des délais :</td>
+                        <td><input type="radio" name="delais" value="TS"> Très satisfait</td>
+                        <td><input type="radio" name="delais" value="S"> Satisfait</td>
+                        <td><input type="radio" name="delais" value="PS"> Peu satisfait</td>
+                        <td><input type="radio" name="delais" value="TPS"> Très peu satisfait</td>
+                    </tr>
+                    <tr>
+                        <td>L’intervention sur place :</td>
+                        <td><input type="radio" name="intervention" value="TS"> Très satisfait</td>
+                        <td><input type="radio" name="intervention" value="S"> Satisfait</td>
+                        <td><input type="radio" name="intervention" value="PS"> Peu satisfait</td>
+                        <td><input type="radio" name="intervention" value="TPS"> Très peu satisfait</td>
+                    </tr>
+                    <tr>
+                        <td>Le récapitulatif mensuel :</td>
+                        <td><input type="radio" name="recapitulatif" value="TS"> Très satisfait</td>
+                        <td><input type="radio" name="recapitulatif" value="S"> Satisfait</td>
+                        <td><input type="radio" name="recapitulatif" value="PS"> Peu satisfait</td>
+                        <td><input type="radio" name="recapitulatif" value="TPS"> Très peu satisfait</td>
+                    </tr>
+                    <tr>
+                        <td>La qualité de la prestation :</td>
+                        <td><input type="radio" name="qualite" value="TS"> Très satisfait</td>
+                        <td><input type="radio" name="qualite" value="S"> Satisfait</td>
+                        <td><input type="radio" name="qualite" value="PS"> Peu satisfait</td>
+                        <td><input type="radio" name="qualite" value="TPS"> Très peu satisfait</td>
+                    </tr>
+                </table>
             </fieldset>
 
             <fieldset>
                 <legend>Vos commentaires et suggestions</legend>
-                <textarea name="commentaires" rows="5" cols="50" placeholder="Écrivez vos suggestions ici..."></textarea>
+                <textarea name="commentaires" rows="6" placeholder="Écrivez vos suggestions ici..."></textarea>
             </fieldset>
 
             <button type="submit">Envoyer</button>
@@ -160,3 +187,5 @@
     </div>
 </body>
 </html>
+
+
