@@ -4,7 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire d'écoute client</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff4d4d, #4caf50, #2196f3, #ddd);
+            background-size: 400% 400%;
+            animation: gradientBG 10s infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        fieldset:hover {
+            border-color: #4caf50;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        label {
+            display: block;
+            margin: 5px 0;
+            color: #555;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #ff4d4d, #4caf50);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #4caf50, #2196f3);
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(1);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -40,45 +151,6 @@
             </fieldset>
 
             <fieldset>
-                <legend>Quelques infos</legend>
-                <p>Vous avez sur votre site :</p>
-                <input type="checkbox" id="plateau1" name="plateau" value="1 plateau">
-                <label for="plateau1">1 plateau</label>
-                <input type="checkbox" id="plateau2" name="plateau" value="2 plateaux">
-                <label for="plateau2">2 plateaux</label>
-                <input type="checkbox" id="plateau0" name="plateau" value="pas de plateau">
-                <label for="plateau0">pas de plateau</label>
-                <br>
-                <input type="checkbox" id="benne1" name="benne" value="1 benne">
-                <label for="benne1">1 benne</label>
-                <input type="checkbox" id="benne2" name="benne" value="2 bennes">
-                <label for="benne2">2 bennes</label>
-                <input type="checkbox" id="benne0" name="benne" value="pas de benne">
-                <label for="benne0">pas de benne</label>
-                <br>
-                <p>Vos fréquences de rotation sont :</p>
-                <input type="radio" id="semaine" name="frequence" value="semaine">
-                <label for="semaine">Semaine</label>
-                <input type="radio" id="mois" name="frequence" value="mois">
-                <label for="mois">Mois</label>
-                <input type="radio" id="annee" name="frequence" value="année">
-                <label for="annee">Année</label>
-            </fieldset>
-
-            <fieldset>
-                <legend>Les prestations</legend>
-                <p>Notre réactivité :</p>
-                <input type="radio" id="ts-reactivite" name="reactivite" value="TS">
-                <label for="ts-reactivite">Très satisfait</label>
-                <input type="radio" id="s-reactivite" name="reactivite" value="S">
-                <label for="s-reactivite">Satisfait</label>
-                <input type="radio" id="ps-reactivite" name="reactivite" value="PS">
-                <label for="ps-reactivite">Peu satisfait</label>
-                <input type="radio" id="tps-reactivite" name="reactivite" value="TPS">
-                <label for="tps-reactivite">Très peu satisfait</label>
-            </fieldset>
-
-            <fieldset>
                 <legend>Vos commentaires et suggestions</legend>
                 <textarea name="commentaires" rows="5" cols="50" placeholder="Écrivez vos suggestions ici..."></textarea>
             </fieldset>
@@ -88,60 +160,3 @@
     </div>
 </body>
 </html>
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #4CAF50;
-}
-
-fieldset {
-    margin: 20px 0;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-legend {
-    font-weight: bold;
-}
-
-label, input, textarea {
-    display: block;
-    margin: 5px 0;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
