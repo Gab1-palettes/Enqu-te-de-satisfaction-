@@ -3,67 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire de Confiance</title> 
+    <title>Questionnaire Ludique</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f7f7f7, #ffffff);
             color: #333;
+            overflow-x: hidden;
         }
-        h1 {
-            color: #4CAF50;
+
+        h1, p {
+            text-align: center;
         }
-        form {
-            max-width: 600px;
-            margin: auto;
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
+
+        .question {
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+
         label {
-            font-weight: bold;
             display: block;
+            font-weight: bold;
             margin: 10px 0 5px;
         }
-        input, textarea, select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
             cursor: pointer;
         }
+
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+
+        textarea, select, input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
         button:hover {
             background-color: #45a049;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: #4CAF50;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Questionnaire de Confiance</h1>
-    <p>Merci de prendre quelques minutes pour répondre à notre questionnaire et nous aider à mieux comprendre vos attentes.</p>
-    <form>
-        <label for="priorites">1. Quels sont vos trois critères principaux dans le choix d'un fournisseur ?</label>
-        <textarea id="priorites" name="priorites" placeholder="Exemple : qualité, prix, rapidité..."></textarea>
+    <div class="container">
+        <h1>Questionnaire de Confiance</h1>
+        <p>Merci de répondre à ces questions pour nous aider à mieux comprendre vos attentes.</p>
+        <div class="progress-bar" id="progress-bar"></div>
+        <form id="questionnaire">
+            <!-- Question 1 -->
+            <div class="question" id="q1">
+                <label>1. Lors du choix d’un fournisseur, quels sont les trois éléments les plus importants pour vous ?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="q1" value="Fiabilité des produits"> Fiabilité des produits</label>
+                    <label><input type="checkbox" name="q1" value="Rapidité des délais"> Rapidité des délais</label>
+                    <label><input type="checkbox" name="q1" value="Prix compétitifs"> Prix compétitifs</label>
+                    <label><input type="checkbox" name="q1" value="Communication et transparence"> Communication et transparence</label>
+                    <label><input type="checkbox" name="q1" value="Engagement environnemental"> Engagement environnemental</label>
+                    <label><input type="checkbox" name="q1" value="Autre"> Autre (précisez)</label>
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="question hidden" id="q2">
+                <label>2. Avant de collaborer avec une entreprise, quelles informations recherchez-vous généralement ?</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="q2" value="Avis clients"> Avis clients</label>
+                    <label><input type="checkbox" name="q2" value="Présentation de l’entreprise"> Présentation de l’entreprise</label>
+                    <label><input type="checkbox" name="q2" value="Certifications"> Certifications ou normes respectées</label>
+                    <label><input type="checkbox" name="q2" value="Démonstration"> Démonstration concrète</label>
+                    <label><input type="checkbox" name="q2" value="Engagements écologiques"> Engagements écologiques ou sociaux</label>
+                </div>
+            </div>
+            <!-- Add more questions as needed -->
 
-        <label for="sources">2. Quelles informations recherchez-vous avant de travailler avec une entreprise ?</label>
-        <textarea id="sources" name="sources" placeholder="Exemple : certifications, avis clients, engagement écologique..."></textarea>
+            <button type="button" id="next-btn">Suivant</button>
+        </form>
+    </div>
 
-        <label for="decision">3. Qu'est-ce qui vous aide à prendre une décision avec un nouveau fournisseur ?</label>
-        <textarea id="decision" name="decision" placeholder="Exemple : échantillons, visite d'usine..."></textarea>
+    <script>
+        const questions = document.querySelectorAll('.question');
+        const progressBar = document.getElementById('progress-bar');
+        const nextBtn = document.getElementById('next-btn');
+        let currentQuestion = 0;
 
-        <label for="amelioration">4. Selon vous, qu’est-ce qui manque souvent chez les fournisseurs pour inspirer confiance ?</label>
-        <textarea id="amelioration" name="amelioration" placeholder="Vos suggestions"></textarea>
-
-        <label for="contact">5. Si vous souhaitez être recontacté, laissez-nous votre email :</label>
-        <input type="email" id="contact" name="contact" placeholder="Votre adresse email (facultatif)">
-
-        <button type="submit">Envoyer</button>
-    </form>
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                questions[currentQuestion].classList.add('hidden');
+                currentQuestion++;
+                questions[currentQuestion].classList.remove('hidden');
+                progressBar.style.width = `${(currentQuestion / questions.length) * 100}%`;
+                if (currentQuestion === questions.length - 1) {
+                    nextBtn.textContent = 'Terminer';
+                }
+            } else {
+                alert('Merci d’avoir complété le questionnaire !');
+                document.getElementById('questionnaire').reset();
+            }
+        });
+    </script>
 </body>
 </html>
