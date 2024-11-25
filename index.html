@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire Ludique</title>
+    <title>Questionnaire de Confiance</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -11,11 +11,26 @@
             padding: 0;
             background: linear-gradient(to right, #f7f7f7, #ffffff);
             color: #333;
-            overflow-x: hidden;
         }
 
-        h1, p {
+        h1 {
             text-align: center;
+            font-size: 2.5em;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
+
+        h2 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            text-align: center;
+            margin: 10px auto 30px;
+            max-width: 700px;
+            font-size: 1.1em;
         }
 
         .container {
@@ -29,12 +44,11 @@
 
         .question {
             margin-bottom: 30px;
-            animation: fadeIn 1s ease;
         }
 
         label {
-            display: block;
             font-weight: bold;
+            display: block;
             margin: 10px 0 5px;
         }
 
@@ -54,7 +68,7 @@
             margin-right: 10px;
         }
 
-        textarea, select, input[type="text"], input[type="email"] {
+        textarea, input[type="text"], input[type="email"] {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
@@ -84,33 +98,23 @@
             width: 0%;
             transition: width 0.3s ease;
             border-radius: 5px;
+            margin-bottom: 20px;
         }
 
         .hidden {
             display: none;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Questionnaire de Confiance</h1>
-        <p>Merci de répondre à ces questions pour nous aider à mieux comprendre vos attentes.</p>
+        <p>Merci de répondre à ces questions pour nous aider à améliorer nos services et renforcer la confiance avec nos clients.</p>
         <div class="progress-bar" id="progress-bar"></div>
         <form id="questionnaire">
             <!-- Question 1 -->
             <div class="question" id="q1">
-                <label>1. Lors du choix d’un fournisseur, quels sont les trois éléments les plus importants pour vous ?</label>
+                <h2>1. Lors du choix d’un fournisseur, quels sont les trois éléments les plus importants pour vous ?</h2>
                 <div class="checkbox-group">
                     <label><input type="checkbox" name="q1" value="Fiabilité des produits"> Fiabilité des produits</label>
                     <label><input type="checkbox" name="q1" value="Rapidité des délais"> Rapidité des délais</label>
@@ -122,17 +126,78 @@
             </div>
             <!-- Question 2 -->
             <div class="question hidden" id="q2">
-                <label>2. Avant de collaborer avec une entreprise, quelles informations recherchez-vous généralement ?</label>
+                <h2>2. Avant de collaborer avec une entreprise, quelles informations recherchez-vous généralement ?</h2>
                 <div class="checkbox-group">
-                    <label><input type="checkbox" name="q2" value="Avis clients"> Avis clients</label>
+                    <label><input type="checkbox" name="q2" value="Avis clients"> Avis clients ou recommandations</label>
                     <label><input type="checkbox" name="q2" value="Présentation de l’entreprise"> Présentation de l’entreprise</label>
                     <label><input type="checkbox" name="q2" value="Certifications"> Certifications ou normes respectées</label>
-                    <label><input type="checkbox" name="q2" value="Démonstration"> Démonstration concrète</label>
+                    <label><input type="checkbox" name="q2" value="Démonstration"> Démonstration concrète des produits/services</label>
                     <label><input type="checkbox" name="q2" value="Engagements écologiques"> Engagements écologiques ou sociaux</label>
                 </div>
             </div>
-            <!-- Add more questions as needed -->
-
+            <!-- Question 3 -->
+            <div class="question hidden" id="q3">
+                <h2>3. Lorsqu’il s’agit de travailler avec un nouveau fournisseur, qu’est-ce qui vous aide à prendre votre décision ?</h2>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="q3" value="Échantillons"> Échantillons ou essais gratuits</label>
+                    <label><input type="checkbox" name="q3" value="Rencontre"> Rencontre avec un commercial ou visite d’usine</label>
+                    <label><input type="checkbox" name="q3" value="Études"> Études de cas ou exemples concrets</label>
+                    <label><input type="checkbox" name="q3" value="Garanties"> Garantie ou assurance qualité</label>
+                    <label><input type="checkbox" name="q3" value="Conditions commerciales"> Présentation claire des conditions commerciales</label>
+                </div>
+            </div>
+            <!-- Question 4 -->
+            <div class="question hidden" id="q4">
+                <h2>4. Pour vous, qu’est-ce qui reflète la fiabilité et le professionnalisme d’une entreprise ?</h2>
+                <textarea name="q4" placeholder="Expliquez ici..."></textarea>
+            </div>
+            <!-- Question 5 -->
+            <div class="question hidden" id="q5">
+                <h2>5. Quel poids accordez-vous à ces aspects dans votre confiance envers une entreprise ?</h2>
+                <label>Respect des délais de livraison :</label>
+                <div class="checkbox-group">
+                    <label><input type="radio" name="q5a" value="Très important"> Très important</label>
+                    <label><input type="radio" name="q5a" value="Important"> Important</label>
+                    <label><input type="radio" name="q5a" value="Peu important"> Peu important</label>
+                </div>
+                <label>Engagement écologique :</label>
+                <div class="checkbox-group">
+                    <label><input type="radio" name="q5b" value="Très important"> Très important</label>
+                    <label><input type="radio" name="q5b" value="Important"> Important</label>
+                    <label><input type="radio" name="q5b" value="Peu important"> Peu important</label>
+                </div>
+                <label>Clarté des informations commerciales :</label>
+                <div class="checkbox-group">
+                    <label><input type="radio" name="q5c" value="Très important"> Très important</label>
+                    <label><input type="radio" name="q5c" value="Important"> Important</label>
+                    <label><input type="radio" name="q5c" value="Peu important"> Peu important</label>
+                </div>
+            </div>
+            <!-- Question 6 -->
+            <div class="question hidden" id="q6">
+                <h2>6. Qu’attendez-vous d’un échange avec notre équipe commerciale ?</h2>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="q6" value="Conseils personnalisés"> Conseils personnalisés</label>
+                    <label><input type="checkbox" name="q6" value="Réactivité rapide"> Réactivité rapide</label>
+                    <label><input type="checkbox" name="q6" value="Informations techniques claires"> Informations techniques claires</label>
+                    <label><input type="checkbox" name="q6" value="Disponibilité"> Disponibilité pour des rendez-vous ou visites</label>
+                </div>
+            </div>
+            <!-- Question 7 -->
+            <div class="question hidden" id="q7">
+                <h2>7. Les avis ou témoignages de nos clients influencent-ils votre perception ?</h2>
+                <div class="checkbox-group">
+                    <label><input type="radio" name="q7" value="Oui, beaucoup"> Oui, beaucoup</label>
+                    <label><input type="radio" name="q7" value="Oui, un peu"> Oui, un peu</label>
+                    <label><input type="radio" name="q7" value="Non"> Non</label>
+                </div>
+            </div>
+            <!-- Question 8 -->
+            <div class="question hidden" id="q8">
+                <h2>8. Selon vous, qu’est-ce qui manque souvent chez les fournisseurs pour instaurer une vraie relation de confiance ?</h2>
+                <textarea name="q8" placeholder="Expliquez ici..."></textarea>
+            </div>
+            <!-- Submit -->
             <button type="button" id="next-btn">Suivant</button>
         </form>
     </div>
@@ -148,7 +213,7 @@
                 questions[currentQuestion].classList.add('hidden');
                 currentQuestion++;
                 questions[currentQuestion].classList.remove('hidden');
-                progressBar.style.width = `${(currentQuestion / questions.length) * 100}%`;
+                progressBar.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
                 if (currentQuestion === questions.length - 1) {
                     nextBtn.textContent = 'Terminer';
                 }
