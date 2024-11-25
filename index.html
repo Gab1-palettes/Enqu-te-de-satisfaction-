@@ -203,7 +203,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("VOTRE_ID_PUBLIC_EMAILJS"); // Remplacez par votre ID public EmailJS
+            emailjs.init("r9_EdMt6rbw2auf5S"); // Remplacez par votre ID public EmailJS
         })();
 
         const form = document.getElementById('questionnaire');
@@ -221,7 +221,7 @@
                 }
             });
 
-            emailjs.send("VOTRE_SERVICE_ID", "VOTRE_TEMPLATE_ID", data)
+            emailjs.send("service_wgpcqsc", "template_0zhf7cp", data)
                 .then(() => {
                     alert("Merci pour vos réponses ! Elles ont été envoyées avec succès.");
                     form.reset();
