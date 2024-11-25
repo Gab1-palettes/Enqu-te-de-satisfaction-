@@ -1,311 +1,147 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire PALETTES DISTRIBUTION</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f5f5f5;
-            color: #333;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 2.5em;
-            color: #1E88E5;
-            margin-top: 20px;
-        }
-
-        h2 {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-            color: #E53935;
-        }
-
-        p {
-            text-align: center;
-            max-width: 700px;
-            margin: 10px auto 30px;
-            font-size: 1.1em;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .question {
-            display: none;
-        }
-
-        .question.active {
-            display: block;
-        }
-
-        .checkbox-group, .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .checkbox-group label, .radio-group label {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #f9f9f9;
-            cursor: pointer;
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
-
-        .checkbox-group label:hover, .radio-group label:hover {
-            background: #e3f2fd;
-            border-color: #1E88E5;
-        }
-
-        .checkbox-group input, .radio-group input {
-            margin-right: 10px;
-        }
-
-        textarea, input[type="text"], input[type="email"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        button {
-            background-color: #1E88E5;
-            color: #fff;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 20px 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #1565C0;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .progress {
-            height: 100%;
-            background: #1E88E5;
-            width: 0;
-            transition: width 0.5s ease;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .error-message {
-            color: #E53935;
-            font-size: 0.9em;
-            margin-top: 10px;
-        }
-    </style>
+    <title>Questionnaire d'écoute client</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Questionnaire PALETTES DISTRIBUTION</h1>
-        <p>Merci de répondre à ce questionnaire pour nous aider à mieux comprendre vos besoins et améliorer nos services.</p>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-        <form id="questionnaire">
-            <!-- Question 1 -->
-            <div class="question active" id="q1">
-                <h2>1. Lors du choix d’un fournisseur, quels sont les trois éléments les plus importants pour vous ?</h2>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="q1[]" value="Fiabilité des produits"> Fiabilité des produits</label>
-                    <label><input type="checkbox" name="q1[]" value="Rapidité des délais"> Rapidité des délais</label>
-                    <label><input type="checkbox" name="q1[]" value="Prix compétitifs"> Prix compétitifs</label>
-                    <label><input type="checkbox" name="q1[]" value="Communication et transparence"> Communication et transparence</label>
-                    <label><input type="checkbox" name="q1[]" value="Engagement environnemental"> Engagement environnemental</label>
-                </div>
-            </div>
+        <h1>Questionnaire d'écoute client</h1>
+        <p>Votre avis nous intéresse !</p>
+        <form action="/submit-form" method="post">
+            <fieldset>
+                <legend>Votre entreprise</legend>
+                <label for="nom-entreprise">Nom :</label>
+                <input type="text" id="nom-entreprise" name="nom-entreprise" required>
+                <label for="activite">Activité :</label>
+                <input type="text" id="activite" name="activite" required>
+                <label for="adresse1">Adresse 1 :</label>
+                <input type="text" id="adresse1" name="adresse1" required>
+                <label for="adresse2">Adresse 2 :</label>
+                <input type="text" id="adresse2" name="adresse2">
+                <label for="code-postal">Code postal :</label>
+                <input type="text" id="code-postal" name="code-postal" required>
+                <label for="ville">Ville :</label>
+                <input type="text" id="ville" name="ville" required>
+            </fieldset>
 
-            <!-- Question 2 -->
-            <div class="question" id="q2">
-                <h2>2. Avant de collaborer avec une entreprise, quelles informations recherchez-vous généralement ?</h2>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="q2[]" value="Avis clients"> Avis clients ou recommandations</label>
-                    <label><input type="checkbox" name="q2[]" value="Présentation de l’entreprise"> Présentation de l’entreprise</label>
-                    <label><input type="checkbox" name="q2[]" value="Certifications"> Certifications ou normes respectées</label>
-                    <label><input type="checkbox" name="q2[]" value="Démonstration"> Démonstration concrète des produits/services</label>
-                    <label><input type="checkbox" name="q2[]" value="Engagements écologiques"> Engagements écologiques ou sociaux</label>
-                </div>
-            </div>
+            <fieldset>
+                <legend>Le responsable déchets bois</legend>
+                <label for="nom-responsable">Nom :</label>
+                <input type="text" id="nom-responsable" name="nom-responsable" required>
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" required>
+                <label for="telephone">Tél :</label>
+                <input type="tel" id="telephone" name="telephone" required>
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" id="email" name="email" required>
+            </fieldset>
 
-            <!-- Question 3 -->
-            <div class="question" id="q3">
-                <h2>3. Lorsqu’il s’agit de travailler avec un nouveau fournisseur, qu’est-ce qui vous aide à prendre votre décision ?</h2>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="q3[]" value="Échantillons"> Échantillons ou essais gratuits</label>
-                    <label><input type="checkbox" name="q3[]" value="Rencontre"> Rencontre avec un commercial ou visite d’usine</label>
-                    <label><input type="checkbox" name="q3[]" value="Études"> Études de cas ou exemples concrets</label>
-                    <label><input type="checkbox" name="q3[]" value="Garanties"> Garantie ou assurance qualité</label>
-                    <label><input type="checkbox" name="q3[]" value="Conditions commerciales"> Présentation claire des conditions commerciales</label>
-                </div>
-            </div>
+            <fieldset>
+                <legend>Quelques infos</legend>
+                <p>Vous avez sur votre site :</p>
+                <input type="checkbox" id="plateau1" name="plateau" value="1 plateau">
+                <label for="plateau1">1 plateau</label>
+                <input type="checkbox" id="plateau2" name="plateau" value="2 plateaux">
+                <label for="plateau2">2 plateaux</label>
+                <input type="checkbox" id="plateau0" name="plateau" value="pas de plateau">
+                <label for="plateau0">pas de plateau</label>
+                <br>
+                <input type="checkbox" id="benne1" name="benne" value="1 benne">
+                <label for="benne1">1 benne</label>
+                <input type="checkbox" id="benne2" name="benne" value="2 bennes">
+                <label for="benne2">2 bennes</label>
+                <input type="checkbox" id="benne0" name="benne" value="pas de benne">
+                <label for="benne0">pas de benne</label>
+                <br>
+                <p>Vos fréquences de rotation sont :</p>
+                <input type="radio" id="semaine" name="frequence" value="semaine">
+                <label for="semaine">Semaine</label>
+                <input type="radio" id="mois" name="frequence" value="mois">
+                <label for="mois">Mois</label>
+                <input type="radio" id="annee" name="frequence" value="année">
+                <label for="annee">Année</label>
+            </fieldset>
 
-            <!-- Question 4 -->
-            <div class="question" id="q4">
-                <h2>4. Pour vous, qu’est-ce qui reflète la fiabilité et le professionnalisme d’une entreprise ?</h2>
-                <textarea name="q4" placeholder="Expliquez ici..."></textarea>
-            </div>
+            <fieldset>
+                <legend>Les prestations</legend>
+                <p>Notre réactivité :</p>
+                <input type="radio" id="ts-reactivite" name="reactivite" value="TS">
+                <label for="ts-reactivite">Très satisfait</label>
+                <input type="radio" id="s-reactivite" name="reactivite" value="S">
+                <label for="s-reactivite">Satisfait</label>
+                <input type="radio" id="ps-reactivite" name="reactivite" value="PS">
+                <label for="ps-reactivite">Peu satisfait</label>
+                <input type="radio" id="tps-reactivite" name="reactivite" value="TPS">
+                <label for="tps-reactivite">Très peu satisfait</label>
+            </fieldset>
 
-            <!-- Question 5 -->
-            <div class="question" id="q5">
-                <h2>5. Quel poids accordez-vous à ces aspects dans votre confiance envers une entreprise ?</h2>
-                <label>Respect des délais de livraison :</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="q5a" value="Très important"> Très important</label>
-                    <label><input type="radio" name="q5a" value="Important"> Important</label>
-                    <label><input type="radio" name="q5a" value="Peu important"> Peu important</label>
-                </div>
-                <label>Engagement écologique :</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="q5b" value="Très important"> Très important</label>
-                    <label><input type="radio" name="q5b" value="Important"> Important</label>
-                    <label><input type="radio" name="q5b" value="Peu important"> Peu important</label>
-                </div>
-                <label>Clarté des informations commerciales :</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="q5c" value="Très important"> Très important</label>
-                    <label><input type="radio" name="q5c" value="Important"> Important</label>
-                    <label><input type="radio" name="q5c" value="Peu important"> Peu important</label>
-                </div>
-            </div>
+            <fieldset>
+                <legend>Vos commentaires et suggestions</legend>
+                <textarea name="commentaires" rows="5" cols="50" placeholder="Écrivez vos suggestions ici..."></textarea>
+            </fieldset>
 
-            <!-- Question 6 -->
-            <div class="question" id="q6">
-                <h2>6. Qu’attendez-vous d’un échange avec notre équipe commerciale ?</h2>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="q6[]" value="Conseils personnalisés"> Conseils personnalisés</label>
-                    <label><input type="checkbox" name="q6[]" value="Réactivité rapide"> Réactivité rapide</label>
-                    <label><input type="checkbox" name="q6[]" value="Informations techniques claires"> Informations techniques claires</label>
-                    <label><input type="checkbox" name="q6[]" value="Disponibilité"> Disponibilité pour des rendez-vous ou visites</label>
-                </div>
-            </div>
-
-            <!-- Question 7 -->
-            <div class="question" id="q7">
-                <h2>7. Les avis ou témoignages de nos clients influencent-ils votre perception ?</h2>
-                <div class="radio-group">
-                    <label><input type="radio" name="q7" value="Oui, beaucoup"> Oui, beaucoup</label>
-                    <label><input type="radio" name="q7" value="Oui, un peu"> Oui, un peu</label>
-                    <label><input type="radio" name="q7" value="Non"> Non</label>
-                </div>
-            </div>
-
-            <!-- Question 8 -->
-            <div class="question" id="q8">
-                <h2>8. Selon vous, qu’est-ce qui manque souvent chez les fournisseurs pour instaurer une vraie relation de confiance ?</h2>
-                <textarea name="q8" placeholder="Expliquez ici..."></textarea>
-            </div>
-
-            <!-- Navigation -->
-            <div>
-                <button type="button" id="prev-btn" class="hidden">Précédent</button>
-                <button type="button" id="next-btn">Suivant</button>
-                <button type="submit" id="submit-btn" class="hidden">Envoyer</button>
-            </div>
+            <button type="submit">Envoyer</button>
         </form>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script>
-        (function () {
-            emailjs.init("r9_EdMt6rbw2auf5S"); // Placez ici votre ID public EmailJS
-        })();
-
-        const form = document.getElementById("questionnaire");
-        const questions = document.querySelectorAll(".question");
-        const progressBar = document.querySelector(".progress");
-        const prevBtn = document.getElementById("prev-btn");
-        const nextBtn = document.getElementById("next-btn");
-        const submitBtn = document.getElementById("submit-btn");
-
-        let currentQuestion = 0;
-
-        function updateUI() {
-            questions.forEach((question, index) => {
-                question.classList.toggle("active", index === currentQuestion);
-            });
-            prevBtn.classList.toggle("hidden", currentQuestion === 0);
-            nextBtn.classList.toggle("hidden", currentQuestion === questions.length - 1);
-            submitBtn.classList.toggle("hidden", currentQuestion !== questions.length - 1);
-            progressBar.style.width = ((currentQuestion + 1) / questions.length) * 100 + "%";
-        }
-
-        function validateQuestion() {
-            const currentInputs = questions[currentQuestion].querySelectorAll("input, textarea");
-            const isValid = Array.from(currentInputs).some(input => input.checked || input.value.trim());
-            const errorMsg = document.getElementById(`error-q${currentQuestion + 1}`);
-            if (errorMsg) errorMsg.classList.toggle("hidden", isValid);
-            return isValid;
-        }
-
-        nextBtn.addEventListener("click", () => {
-            if (!validateQuestion()) return;
-            currentQuestion++;
-            updateUI();
-        });
-
-        prevBtn.addEventListener("click", () => {
-            currentQuestion--;
-            updateUI();
-        });
-
-        form.addEventListener("submit", function (event) {
-            event.preventDefault();
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => {
-                if (!data[key]) {
-                    data[key] = value;
-                } else {
-                    data[key] += `, ${value}`;
-                }
-            });
-
-            emailjs
-                .send("service_wgpcqsc", "template_0zhf7cp", data)
-                .then(() => {
-                    alert("Merci pour vos réponses ! Elles ont été envoyées avec succès.");
-                    form.reset();
-                })
-                .catch(err => {
-                    alert("Une erreur est survenue. Veuillez réessayer plus tard.");
-                    console.error("Erreur :", err);
-                });
-        });
-
-        updateUI();
-    </script>
 </body>
 </html>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #4CAF50;
+}
+
+fieldset {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+label, input, textarea {
+    display: block;
+    margin: 5px 0;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
