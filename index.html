@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire de Confiance</title>
+    <title>Questionnaire Ludique</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #f7f7f7, #ffffff);
+            background: linear-gradient(to bottom, #f1f1f1, #ffffff);
             color: #333;
         }
 
         h1 {
             text-align: center;
             font-size: 2.5em;
-            color: #4CAF50;
+            color: #1E88E5; /* Bleu */
             margin: 20px 0;
         }
 
         h2 {
             font-size: 1.3em;
             margin-bottom: 10px;
-            color: #333;
+            color: #E53935; /* Rouge */
         }
 
         p {
@@ -78,7 +78,7 @@
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #1E88E5;
             color: #fff;
             border: none;
             padding: 15px 30px;
@@ -89,16 +89,30 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #1565C0;
         }
 
         .progress-bar {
-            height: 5px;
-            background: #4CAF50;
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 5px;
+            height: 200px;
+            position: relative;
             margin-bottom: 20px;
+            border: 1px solid #ddd;
+            background: #f1f1f1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar .stage {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .stage img {
+            max-width: 100px;
+            display: inline-block;
         }
 
         .hidden {
@@ -108,6 +122,31 @@
 </head>
 <body>
     <div class="container">
+        <h1>Questionnaire de Confiance</h1>
+        <p>Répondez à nos questions et suivez la construction d'une palette qui finira par être chargée dans un camion !</p>
+        <div class="progress-bar" id="progress-bar">
+            <div class="stage" id="stage1" style="display: none;">
+                <img src="https://via.placeholder.com/100x50?text=Plots" alt="Plots">
+                <p>Plots placés</p>
+            </div>
+            <div class="stage" id="stage2" style="display: none;">
+                <img src="https://via.placeholder.com/200x50?text=Semelles" alt="Semelles">
+                <p>Semelles installées</p>
+            </div>
+            <div class="stage" id="stage3" style="display: none;">
+                <img src="https://via.placeholder.com/300x50?text=Planches" alt="Planches">
+                <p>Planches ajoutées</p>
+            </div>
+            <div class="stage" id="stage4" style="display: none;">
+                <img src="https://via.placeholder.com/350x50?text=Assemblage" alt="Assemblage">
+                <p>Palette assemblée</p>
+            </div>
+            <div class="stage" id="stage5" style="display: none;">
+                <img src="https://via.placeholder.com/400x100?text=Camion" alt="Camion">
+                <p>Palette chargée dans le camion</p>
+            </div>
+        </div>
+       <div class="container">
         <h1>Questionnaire de Confiance</h1>
         <p>Merci de répondre à ces questions pour nous aider à améliorer nos services et renforcer la confiance avec nos clients.</p>
         <div class="progress-bar" id="progress-bar"></div>
@@ -204,24 +243,25 @@
 
     <script>
         const questions = document.querySelectorAll('.question');
-        const progressBar = document.getElementById('progress-bar');
+        const stages = ['stage1', 'stage2', 'stage3', 'stage4', 'stage5'];
         const nextBtn = document.getElementById('next-btn');
         let currentQuestion = 0;
 
         nextBtn.addEventListener('click', () => {
             if (currentQuestion < questions.length - 1) {
                 questions[currentQuestion].classList.add('hidden');
+                document.getElementById(stages[currentQuestion]).style.display = 'block';
                 currentQuestion++;
                 questions[currentQuestion].classList.remove('hidden');
-                progressBar.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
                 if (currentQuestion === questions.length - 1) {
                     nextBtn.textContent = 'Terminer';
                 }
             } else {
+                document.getElementById(stages[currentQuestion]).style.display = 'block';
                 alert('Merci d’avoir complété le questionnaire !');
-                document.getElementById('questionnaire').reset();
             }
         });
     </script>
 </body>
 </html>
+
