@@ -134,6 +134,57 @@
     <div class="container">
         <h1>Questionnaire d'écoute client</h1>
         <p>Votre avis nous intéresse !</p>
+         <!-- Section Votre entreprise -->
+            <fieldset>
+                <legend>Votre entreprise</legend>
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                <label for="activite">Activité :</label>
+                <input type="text" id="activite" name="activite" placeholder="Votre activité" required>
+                <label for="adresse1">Adresse 1 :</label>
+                <input type="text" id="adresse1" name="adresse1" placeholder="Adresse ligne 1" required>
+                <label for="adresse2">Adresse 2 :</label>
+                <input type="text" id="adresse2" name="adresse2" placeholder="Adresse ligne 2">
+                <label for="code-postal">Code postal :</label>
+                <input type="text" id="code-postal" name="code-postal" placeholder="Code postal" required>
+                <label for="ville">Ville :</label>
+                <input type="text" id="ville" name="ville" placeholder="Ville" required>
+            </fieldset>
+
+            <!-- Section Quelques infos -->
+            <fieldset>
+                <legend>Quelques infos</legend>
+                <p>Vous avez sur votre site :</p>
+                <input type="checkbox" id="plateau1" name="site_plateau" value="1 plateau">
+                <label for="plateau1">1 plateau</label>
+                <input type="checkbox" id="plateau2" name="site_plateau" value="2 plateaux">
+                <label for="plateau2">2 plateaux</label>
+                <input type="checkbox" id="plateau0" name="site_plateau" value="pas de plateau">
+                <label for="plateau0">Pas de plateau</label>
+                <br>
+                <input type="checkbox" id="benne1" name="site_benne" value="1 benne">
+                <label for="benne1">1 benne</label>
+                <input type="checkbox" id="benne2" name="site_benne" value="2 bennes">
+                <label for="benne2">2 bennes</label>
+                <input type="checkbox" id="benne0" name="site_benne" value="pas de benne">
+                <label for="benne0">Pas de benne</label>
+                <br>
+                <p>Vos fréquences de rotation sont :</p>
+                <input type="radio" id="semaine" name="rotation_frequence" value="Semaine">
+                <label for="semaine">Semaine</label>
+                <input type="radio" id="mois" name="rotation_frequence" value="Mois">
+                <label for="mois">Mois</label>
+                <input type="radio" id="annee" name="rotation_frequence" value="Année">
+                <label for="annee">Année</label>
+                <br>
+                <p>Vous nous contactez par :</p>
+                <input type="checkbox" id="telephone" name="contact_moyen" value="téléphone">
+                <label for="telephone">Téléphone</label>
+                <input type="checkbox" id="fax" name="contact_moyen" value="fax">
+                <label for="fax">Fax</label>
+                <input type="checkbox" id="email" name="contact_moyen" value="email">
+                <label for="email">E-mail</label>
+            </fieldset>
         <form action="/submit-form" method="post">
             <fieldset>
                 <legend>Les prestations</legend>
@@ -180,6 +231,32 @@
             <fieldset>
                 <legend>Vos commentaires et suggestions</legend>
                 <textarea name="commentaires" rows="6" placeholder="Écrivez vos suggestions ici..."></textarea>
+            </fieldset>
+
+            <!-- Section RGPD -->
+            <fieldset>
+                <legend>Modalités RGPD</legend>
+                <div class="rgpd">
+                    <p>Conformément au Règlement Général sur la Protection des Données (RGPD), nous vous informons que :</p>
+                    <ul>
+                        <li>Les informations collectées sont utilisées exclusivement pour :</li>
+                        <ul>
+                            <li>Analyser vos retours afin d'améliorer la qualité de nos services.</li>
+                            <li>Établir une communication avec vous pour répondre à vos demandes ou suggestions.</li>
+                            <li>Suivre et optimiser nos prestations pour mieux répondre à vos attentes.</li>
+                        </ul>
+                        <li>Vos données ne seront jamais transmises à des tiers sans votre consentement explicite.</li>
+                        <li>Vous avez le droit de demander l'accès, la rectification ou la suppression de vos données personnelles à tout moment.</li>
+                        <li>Pour toute demande ou question concernant vos données personnelles, contactez-nous à l'adresse suivante :</li>
+                        <ul>
+                            <li><strong>contact@palettes-distribution.com</strong></li>
+                        </ul>
+                        <li>Pour plus d'informations, consultez notre <a href="#">Politique de confidentialité</a>.</li>
+                    </ul>
+                    <label>
+                        <input type="checkbox" name="consentement" required> J'accepte que mes données soient utilisées dans le cadre défini ci-dessus.
+                    </label>
+                </div>
             </fieldset>
 
             <button type="submit">Envoyer</button>
